@@ -38,7 +38,7 @@ const Income = () => {
   const [incomeRes, setIncomeRes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => setShow(!show);
 
   const fetchIncomes = async () => {
     setLoading(true);
@@ -117,14 +117,7 @@ const Income = () => {
         {incomeRes.length !== 0 ? (
           incomeRes?.map((itm, idx) => (
             <>
-              <Col
-                key={itm._id}
-                className="p-1"
-                onClick={() => {
-                  setIncomeId(itm._id);
-                  handleShow();
-                }}
-              >
+              <Col key={itm._id} className="p-1">
                 <Card className=" mapped-card-design">
                   <Card.Body className="p-1">
                     <Card.Title className="d-flex justify-content-between">
@@ -136,7 +129,13 @@ const Income = () => {
                       </span>
 
                       <div>
-                        <span className="make-cursor-pointer">
+                        <span
+                          className="make-cursor-pointer"
+                          onClick={() => {
+                            // setIncomeId(itm._id);
+                            // handleShow();
+                          }}
+                        >
                           {/* <EditSVG /> */}
                         </span>
                         <span

@@ -90,14 +90,20 @@ export default function IncomeModal({ ...props }) {
     };
     let res = await getIncomeDetailByid(input);
 
-    console.log(res);
+    setIncomeInput({
+      title: res?.data?.title,
+      amount: res?.data?.amount,
+      category: res?.data?.category,
+      date: res?.data?.date,
+      details: res?.data?.description,
+    });
   };
 
   useEffect(() => {
     if (props.incomeId) {
       fetchIncomeDetails(props.incomeId);
     }
-  }, []);
+  }, [props.incomeId]);
 
   return (
     <>

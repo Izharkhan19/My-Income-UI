@@ -82,7 +82,6 @@ export const updateIncomeDetails = async (id, ReqData) => {
   try {
     const response = await axios({
       method: "PUT",
-      // url: API_BASE_PATH.BasePath + `update-income-details/${id}`,
       url: `${basepath.base_URL}api/v1/update-income-details/${id}`,
       data: ReqData,
       headers: {
@@ -97,42 +96,18 @@ export const updateIncomeDetails = async (id, ReqData) => {
 };
 
 export const getIncomeDetailByid = async (ReqData) => {
-  // let data = JSON.stringify({
-  //   id: "6683c5b746d8263e1f36dc9d",
-  // });
-  let data = JSON.stringify(ReqData);
-
-  let config = {
-    method: "get",
-    maxBodyLength: Infinity,
-    url: "http://localhost:5000/api/v1/getIncomeByid",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: data,
-  };
-
-  axios
-    .request(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch((error) => {
-      console.log(error);
+  try {
+    const response = await axios({
+      method: "post",
+      url: `${basepath.base_URL}api/v1/getIncomeByid`,
+      data: ReqData,
+      headers: {
+        "Content-Type": "application/json",
+        // Authorization: "bearer " + accessToken,
+      },
     });
-
-  // try {
-  //   const response = await axios({
-  //     method: "get",
-  //     url: `${basepath.base_URL}api/v1/getIncomeByid`,
-  //     data: ReqData,
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       // Authorization: "bearer " + accessToken,
-  //     },
-  //   });
-  //   return response;
-  // } catch (error) {
-  //   return error;
-  // }
+    return response;
+  } catch (error) {
+    return error;
+  }
 };

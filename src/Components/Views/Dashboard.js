@@ -53,11 +53,9 @@ const Dashboard = () => {
     let resExpenses = await getExpensesData();
     if (resIncomes && resExpenses) {
       // Trans Histor :
-      debugger;
       if (!resIncomes.error && !resExpenses.error) {
         const history = [...resIncomes, ...resExpenses];
-        console.log("history", history);
-        history.sort((a, b) => {
+        history?.sort((a, b) => {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
         setTransHistory(history);
@@ -244,7 +242,7 @@ const Dashboard = () => {
             <h3>Recent History </h3>
             {/* <div style={{ maxHeight: "50vh", overflow: "auto" }}> */}
             <div>
-              {TransHistory.length !== 0 &&
+              {TransHistory?.length !== 0 &&
                 TransHistory.map((itm) => {
                   return (
                     <>
